@@ -13,15 +13,14 @@
                 <a class="nav-link active" href="#sec-1" style="margin-right: 25px;">Home</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#sec-2" style="margin-right: 25px;">features</a>
+                <a class="nav-link" href="#sec-2" style="margin-right: 25px;">Readings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#sec-3" style="margin-right: 25px;">About</a>
+                <a class="nav-link" href="#sec-3" style="margin-right: 25px;">History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./history.php" style="margin-right: 25px;">Download</a>
             </li>
         </ul>
-        <div class="form-inline my-2 my-lg-0">
-            <a class="btn btn-outline-dark my-2 my-sm-0 btn-sm" href="./login.php" style="border-radius: 15px;">Create Account</a>
-            <!-- <button class="" type="submit">Create Account</button> -->
-        </div>
     </div>
 </nav>

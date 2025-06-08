@@ -26,7 +26,7 @@
     <?php require_once './pg/nav.php'; ?>
 
     <!-- sec-01 -->
-    <div class="container-fluid text-white justify content center" id="sec-1" style=";height: 400px; padding-top: 80px;background-image: url('./src/img/banner.gif'); background-repeat : no-repeat; background-size: cover;">
+    <div class="container-fluid text-white justify content center" id="sec-1" style="height: 400px; padding-top: 80px;background-image: url('./src/img/banner.gif'); background-repeat : no-repeat; background-size: cover;">
         <div>
             <style>
                 h1 {
@@ -371,7 +371,7 @@
                     </p>
                     <div style="margin-top: 50px;margin-bottom: 50px;"
                         class=" col-12 col-sm-11 col-md-8 col-lg-6 col-xl-6">
-                        <a href="./login.php" style="border-radius: 15px;">
+                        <a href="./history.php" style="border-radius: 15px;">
                             <button type="button" class="btn btn-success cst-btn m-3 cst-bg">See Old data
                             </button>
                         </a>

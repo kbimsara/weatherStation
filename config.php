@@ -3,7 +3,7 @@ $serverName="localhost";
 // $serverName="34.65.250.137:3306";
 $userName = "root";
 $password ="";
-$databaseName = "notesketch";
+$databaseName = "weatherstatuin";
 
 //connect database to variable
 $Connector = new mysqli($serverName, $userName, $password, $databaseName);
