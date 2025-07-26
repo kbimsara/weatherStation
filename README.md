@@ -98,6 +98,9 @@ cd weatherStation
   - MySQL
 - Hardware:
   - ESP32 microcontroller
-  - ESP32 microcontroller
+  - Raindrops Rain Sensor Moisture Water Module YL-83 FC-37
+  - DHT11 Temperature and Relative Humidity Sensor Module for Arduino
+  - MQ-135 Air Quality Benzene Alcohol Smoke Hazardous Gas Module
+  - BMP280 6-pin 3.3V Digital Barometric Pressure Sensor SPI I2C
   - Various environmental sensors
 
