@@ -5,9 +5,6 @@
         color: darkgray;
     }
 </style>
-    <center>
-        <img src="./src/logo/note.png" alt="Logo" style="height: 30px; margin: 10px;">
-    </center>
     <div class="d-flex text-center justify-content-center">
         <div class="icn m-3">
             <a href="#">
@@ -44,10 +41,5 @@
         </div>
     </div>
 
-    <!-- Copyright -->
-    <div class="text-center p-3 text-dark">
-        © 2023 Copyright:
-        <a href="https://www.linkedin.com/in/kavidu-bimsara/">Notesketch</a>
-    </div>
     <!-- Copyright -->
 </footer>
