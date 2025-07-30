@@ -31,11 +31,11 @@ $air_raw      = $data['air_quality_raw'];
 $air_status   = $data['air_quality_status'];
 $rain_detected= $data['rain_detected'];
 $rain_value   = $data['rain_value'];
-// $timestamp   = convertToSriLankaTime(date('Y-m-d H:i:s'));
+$timestamp   = convertToSriLankaTime(date('Y-m-d H:i:s'));
 
-$tt="2025-07-29 04:26:47";
+// $tt="2025-07-29 04:26:47";
 
-$timestamp   = convertToSriLankaTime($tt);
+// $timestamp   = convertToSriLankaTime($tt);
 
 
 // $timeStamp=date(format,timestamp);
