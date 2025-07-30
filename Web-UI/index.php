@@ -96,7 +96,7 @@
                                         const raindata = data.map(entry => entry.rain_detected);
                                         const labels = data.map(entry => {
                                             const time = new Date(entry.timestamp);
-                                            return time.getHours().toString().padStart(2, '0') + ":00";
+                                            return time.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
                                         });
 
                                         if (!chart) {
@@ -144,79 +144,6 @@
                                 setInterval(fetchAndUpdateChart, 10000);
                                 </script>
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Air Quality card -->
-                    <div class="col-11 col-sm-11 col-md-9 col-lg-4 col-xl-3 m-4">
-                        <div class="card crd shadow"
-                            style="text-align: start;padding: 10px; padding-bottom: 35px;border-radius: 15px;background-color: #EDEDED;">
-                            <div class="card-body">
-                                <svg style="position: absolute;right: 27px;top: 34px;"
-                                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                    class="bi bi-wind" viewBox="0 0 16 16">
-                                    <path
-                                        d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5" />
-                                </svg>
-                                <h5 class="card-title" style="font-weight: bold;">Air quality</h5>
-                                <div>
-                                    <canvas id="myChart2"></canvas>
-                                </div>
-                                <center>
-                                    <span style="font-weight: bolder; font-size: x-large; margin: 0;color: green;">
-                                        Healthy</span>
-                                </center>
-
-                                <script>
-                                const ctx2 = document.getElementById('myChart2');
-
-                                const labels2 = Array.from({
-                                    length: 24
-                                }, (_, i) => i.toString().padStart(1, '0') + ':00');
-
-                                new Chart(ctx2, {
-                                    type: 'line',
-                                    data: {
-                                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                        // labels: labels2,
-                                        datasets: [{
-                                            label: 'Rain Data',
-                                            data: [1, 5, 1, 3, 1, 7, 1],
-                                            borderWidth: 1
-                                        }, {
-                                            label: 'Rain Data',
-                                            data: [1, 5, 2, 2, 1, 7, 1],
-                                            borderWidth: 1
-                                        }, {
-                                            label: 'Rain Data',
-                                            data: [1, 5, 1, 2, 6, 7, 1],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                min: 0,
-                                                max: 10,
-                                                ticks: {
-                                                    stepSize: 1
-                                                },
-                                                title: {
-                                                    display: true,
-                                                    text: 'Rain or Not (0 or 1)'
-                                                }
-                                            },
-                                            x: {
-                                                title: {
-                                                    display: true,
-                                                    text: 'Hour of Day'
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -280,6 +207,79 @@
                                                 title: {
                                                     display: true,
                                                     text: 'Voltages (V)'
+                                                }
+                                            },
+                                            x: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Hour of Day'
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Air Quality card -->
+                    <div class="col-11 col-sm-11 col-md-9 col-lg-4 col-xl-3 m-4">
+                        <div class="card crd shadow"
+                            style="text-align: start;padding: 10px; padding-bottom: 35px;border-radius: 15px;background-color: #EDEDED;">
+                            <div class="card-body">
+                                <svg style="position: absolute;right: 27px;top: 34px;"
+                                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-wind" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5" />
+                                </svg>
+                                <h5 class="card-title" style="font-weight: bold;">Air quality</h5>
+                                <div>
+                                    <canvas id="myChart2"></canvas>
+                                </div>
+                                <center>
+                                    <span style="font-weight: bolder; font-size: x-large; margin: 0;color: green;">
+                                        Healthy</span>
+                                </center>
+
+                                <script>
+                                const ctx2 = document.getElementById('myChart2');
+
+                                const labels2 = Array.from({
+                                    length: 24
+                                }, (_, i) => i.toString().padStart(1, '0') + ':00');
+
+                                new Chart(ctx2, {
+                                    type: 'line',
+                                    data: {
+                                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                        // labels: labels2,
+                                        datasets: [{
+                                            label: 'Rain Data',
+                                            data: [1, 5, 1, 3, 1, 7, 1],
+                                            borderWidth: 1
+                                        }, {
+                                            label: 'Rain Data',
+                                            data: [1, 5, 2, 2, 1, 7, 1],
+                                            borderWidth: 1
+                                        }, {
+                                            label: 'Rain Data',
+                                            data: [1, 5, 1, 2, 6, 7, 1],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                min: 0,
+                                                max: 10,
+                                                ticks: {
+                                                    stepSize: 1
+                                                },
+                                                title: {
+                                                    display: true,
+                                                    text: 'Rain or Not (0 or 1)'
                                                 }
                                             },
                                             x: {
@@ -365,7 +365,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Temperature card -->
+
+                    <!-- Air pressure card -->
                     <div class="col-11 col-sm-11 col-md-9 col-lg-4 col-xl-3 m-4">
                         <div class="card crd shadow"
                             style="text-align: start;padding: 10px; padding-bottom: 35px;border-radius: 15px;background-color: #EDEDED;">
