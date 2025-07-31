@@ -1,14 +1,14 @@
 <?php
-$serverName="localhost";
-// $serverName="34.65.250.137:3306";
+$serverName = "localhost";
 $userName = "root";
-$password ="";
+$password = "";
 $databaseName = "weatherstatuin";
 
-//connect database to variable
+// Connect to database
 $Connector = new mysqli($serverName, $userName, $password, $databaseName);
 
-//check database cpnnect or not
-if($Connector->connect_error){
-    die("Connection is failed" . $dbConnector->connect_error);
+// Check connection
+if ($Connector->connect_error) {
+    die("Connection failed: " . $Connector->connect_error);
 }
+?>
