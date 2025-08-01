@@ -96,7 +96,11 @@
                                         const raindata = data.map(entry => entry.rain_detected);
                                         const labels = data.map(entry => {
                                             const time = new Date(entry.timestamp);
-                                            return time.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                                            return time.toLocaleTimeString('en-GB', {
+                                                hour: '2-digit',
+                                                minute: '2-digit',
+                                                second: '2-digit'
+                                            });
                                         });
 
                                         if (!chart) {
@@ -259,14 +263,6 @@
                                             label: 'Rain Data',
                                             data: [1, 5, 1, 3, 1, 7, 1],
                                             borderWidth: 1
-                                        }, {
-                                            label: 'Rain Data',
-                                            data: [1, 5, 2, 2, 1, 7, 1],
-                                            borderWidth: 1
-                                        }, {
-                                            label: 'Rain Data',
-                                            data: [1, 5, 1, 2, 6, 7, 1],
-                                            borderWidth: 1
                                         }]
                                     },
                                     options: {
@@ -384,6 +380,54 @@
                                 <center>
                                     <span
                                         style="font-weight: bolder; font-size: x-large; margin: 0;color: green;">200P</span>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Humidity card -->
+                    <div class="col-11 col-sm-11 col-md-9 col-lg-4 col-xl-3 m-4">
+                        <div class="card crd shadow"
+                            style="text-align: start;padding: 10px; padding-bottom: 35px;border-radius: 15px;background-color: #EDEDED;">
+                            <div class="card-body">
+
+                                <svg style="position: absolute;right: 27px;top: 34px;"
+                                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-thermometer-sun" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10 3c0 1.313-.304 2.508-.8 3.4a2 2 0 0 0-1.484-.38c-.28-.982-.91-2.04-1.838-2.969a8 8 0 0 0-.491-.454A6 6 0 0 1 8 2c.691 0 1.355.117 1.973.332Q10 2.661 10 3m0 5q0 .11-.012.217c1.018-.019 2.2-.353 3.331-1.006a8 8 0 0 0 .57-.361 6 6 0 0 0-2.53-3.823 9 9 0 0 1-.145.64c-.34 1.269-.944 2.346-1.656 3.079.277.343.442.78.442 1.254m-.137.728a2 2 0 0 1-1.07 1.109c.525.87 1.405 1.725 2.535 2.377q.3.174.605.317a6 6 0 0 0 2.053-4.111q-.311.11-.641.199c-1.264.339-2.493.356-3.482.11ZM8 10c-.45 0-.866-.149-1.2-.4-.494.89-.796 2.082-.796 3.391q0 .346.027.678A6 6 0 0 0 8 14c.94 0 1.83-.216 2.623-.602a8 8 0 0 1-.497-.458c-.925-.926-1.555-1.981-1.836-2.96Q8.149 10 8 10M6 8q0-.12.014-.239c-1.02.017-2.205.351-3.34 1.007a8 8 0 0 0-.568.359 6 6 0 0 0 2.525 3.839 8 8 0 0 1 .148-.653c.34-1.267.94-2.342 1.65-3.075A2 2 0 0 1 6 8m-3.347-.632c1.267-.34 2.498-.355 3.488-.107.196-.494.583-.89 1.07-1.1-.524-.874-1.406-1.733-2.541-2.388a8 8 0 0 0-.594-.312 6 6 0 0 0-2.06 4.106q.309-.11.637-.199M8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                </svg>
+                                <h5 class="card-title" style="font-weight: bold;">Humidity</h5>
+
+                                <center>
+                                    <span
+                                        style="font-weight: bolder; font-size: x-large; margin: 0;color: green;">90%</span>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Altitude card -->
+                    <div class="col-11 col-sm-11 col-md-9 col-lg-4 col-xl-3 m-4">
+                        <div class="card crd shadow"
+                            style="text-align: start;padding: 10px; padding-bottom: 35px;border-radius: 15px;background-color: #EDEDED;">
+                            <div class="card-body">
+
+                                <svg style="position: absolute;right: 27px;top: 34px;"
+                                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-map" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z" />
+                                </svg>
+
+                                <h5 class="card-title" style="font-weight: bold;">Approximate Altitude</h5>
+
+                                <center>
+                                    <span style="font-weight: bolder; font-size: x-large; margin: 0;color: green;">41.3
+                                        m</span>
                                 </center>
 
                             </div>
