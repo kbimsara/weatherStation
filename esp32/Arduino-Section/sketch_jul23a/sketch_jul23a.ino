@@ -1,6 +1,9 @@
 #include <WiFi.h>
 #include "DHT.h"
 #include "ThingSpeak.h"
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_BMP280.h>
 
 #define DHTPIN 4
 #define DHTTYPE DHT11
