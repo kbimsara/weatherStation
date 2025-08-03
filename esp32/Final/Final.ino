@@ -7,24 +7,23 @@
 #include "DHT.h"
 
 // --- OLED SPI ---
-#define OLED_MOSI   23
-#define OLED_CLK    18
-#define OLED_DC     17
-#define OLED_CS     5
-#define OLED_RESET  16
+#define OLED_MOSI 23
+#define OLED_CLK 18
+#define OLED_DC 17
+#define OLED_CS 5
+#define OLED_RESET 16
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
 // --- Sensor Pins ---
-#define DHTPIN       14
-#define DHTTYPE      DHT11
-#define MQ135_PIN    34
-#define RAIN_PIN     26
-#define CHARGE_PIN   27
+#define DHTPIN 14
+#define DHTTYPE DHT11
+#define MQ135_PIN 34
+#define RAIN_PIN 26
+#define CHARGE_PIN 32  // 3.1V Solar Panel (Max safe on ESP32 ADC)
 
-// --- Wi-Fi Credentials ---
-const char* ssid = "HUNTER";
+const char* ssid = "hunter";
 const char* password = "0724229199";
 
 // --- ThingSpeak ---
@@ -42,7 +41,8 @@ void setup() {
   // OLED
   if (!display.begin(SSD1306_SWITCHCAPVCC)) {
     Serial.println(F("SSD1306 failed"));
-    while (true);
+    while (true)
+      ;
   }
   display.clearDisplay();
   display.display();
@@ -50,7 +50,8 @@ void setup() {
   // BMP280
   if (!bmp.begin(0x76)) {
     Serial.println(F("BMP280 not found!"));
-    while (true);
+    while (true)
+      ;
   }
   bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,
                   Adafruit_BMP280::SAMPLING_X2,
@@ -59,7 +60,6 @@ void setup() {
                   Adafruit_BMP280::STANDBY_MS_500);
 
   dht.begin();
-
   pinMode(RAIN_PIN, INPUT);
   pinMode(CHARGE_PIN, INPUT);
 
@@ -82,7 +82,10 @@ void loop() {
   float humidity = dht.readHumidity();
   int airQuality = analogRead(MQ135_PIN);
   bool isRaining = digitalRead(RAIN_PIN) == LOW;
-  float isCharging = analogRead(CHARGE_PIN);
+
+  // Convert ADC reading to actual voltage for solar panel (0–3.3V)
+  int chargeRaw = analogRead(CHARGE_PIN);
+  float solarVoltage = chargeRaw * (3.3 / 4095.0);  // Accurate voltage reading
 
   // --- Serial Monitor Output ---
   Serial.println("=== Weather Station Data ===");
@@ -92,7 +95,7 @@ void loop() {
   Serial.printf("Pressure: %.0f hPa\n", pressure);
   Serial.printf("Altitude: %.1f m\n", altitude);
   Serial.printf("Rain Detected: %s\n", isRaining ? "YES" : "NO");
-  Serial.printf("Charging: %s\n", isCharging > 1000 ? "YES" : "NO");
+  Serial.printf("Solar Voltage: %.2f V\n", solarVoltage);
   Serial.println("===========================\n");
 
   // --- OLED Display ---
@@ -126,8 +129,7 @@ void loop() {
   display.print("m");
 
   display.setCursor(90, 50);
-  display.print(isCharging > 1000 ? "⚡" : "-");
-
+  display.print(solarVoltage);
   display.display();
 
   // --- Upload to ThingSpeak ---
@@ -135,6 +137,9 @@ void loop() {
   ThingSpeak.setField(2, humidity);
   ThingSpeak.setField(3, airQuality);
   ThingSpeak.setField(4, isRaining ? 1 : 0);
+  ThingSpeak.setField(5, altitude);
+  ThingSpeak.setField(6, pressure);
+  ThingSpeak.setField(7, solarVoltage);  // New: solar voltage as Field 7
 
   int result = ThingSpeak.writeFields(channelID, writeAPIKey);
   if (result == 200) {
