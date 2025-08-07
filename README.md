@@ -14,6 +14,10 @@ A web-based IoT weather monitoring system that collects, displays, and stores en
   - Rain Detection
   - Solar Power System monitoring
 
+## System Architecture
+
+![System Architecture](diagram.png)
+
 ## Project Structure
 
 ```
