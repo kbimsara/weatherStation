@@ -1,22 +1,25 @@
 # Smart Weather Monitoring System
 
-A web-based IoT weather monitoring system that collects, displays, and stores environmental data using ESP32 and various sensors.
+A comprehensive IoT-based weather monitoring system that provides real-time environmental data collection, visualization, and storage using ESP32 and various sensors.
 
 ## Features
 
-- Real-time weather data monitoring
-- Historical data viewing and export
-- Responsive web interface
-- Multiple sensor support:
-  - Temperature & Humidity (DHT sensor)
-  - Atmospheric Pressure (BMP sensor)
-  - Air Quality
-  - Rain Detection
+- Real-time weather monitoring dashboard
+- Historical data analysis and visualization
+- Mobile-responsive web interface
+- Data export functionality (CSV)
+- Comprehensive sensor suite:
+  - Temperature & Humidity (DHT11)
+  - Atmospheric Pressure (BMP280)
+  - Air Quality (MQ-135)
+  - Rain Detection (YL-83 FC-37)
   - Solar Power System monitoring
 
 ## System Architecture
 
 ![System Architecture](diagram.png)
+
+*System architecture diagram showing data flow and component interactions*
 
 ## Project Structure
 
@@ -36,75 +39,132 @@ A web-based IoT weather monitoring system that collects, displays, and stores en
 │   ├── history.php         # Historical data view
 │   └── index.php           # Main dashboard
 └── esp32/                   # ESP32 firmware
+    └── Final
+          └── Final.ino            # Device firmware
 ```
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
-- Git installed on your machine
+### Software Requirements
+- Git (version control)
 - PHP 7.4 or higher
 - MySQL 5.7 or higher
 - Web server (Apache/Nginx)
-- Arduino IDE (for ESP32 programming)
+- Arduino IDE with ESP32 board support
+- Web browser (Chrome/Firefox/Safari)
 
-### Clone the Repository
+### Hardware Requirements
+- ESP32 Development Board
+- DHT11 Temperature and Humidity Sensor
+- BMP280 Pressure Sensor
+- MQ-135 Air Quality Sensor
+- YL-83 FC-37 Rain Sensor
+- Power supply (5V)
+- Connecting wires
+
+## Installation
+
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/kbimsara/weatherStation.git
 cd weatherStation
 ```
 
-## Setup
+### 2. Database Setup
+1. Create MySQL database:
+```sql
+CREATE DATABASE weatherstation;
+```
 
-1. Database Configuration
-   - Create a MySQL database named `weatherstatuin`
-   - Update database credentials in `Web-UI/config.php`:
-   ```php
-   $serverName = "localhost";
-   $userName = "root";
-   $password = "";
-   $databaseName = "weatherstatuin";
-   ```
+2. Update database configuration in `Web-UI/config.php`:
+```php
+$serverName = "localhost";
+$userName = "root";
+$password = "";
+$databaseName = "weatherstation";
+```
 
-2. Web Server Setup
-   - Deploy the contents of `Web-UI/` to your web server
-   - Ensure PHP and MySQL are installed and configured
+3. Import database schema:
+```bash
+mysql -u root -p weatherstation < DB\ File/schema.sql
+```
 
-3. ESP32 Setup
-   - Upload the firmware from `esp32/` folder to your ESP32 device
-   - Configure WiFi credentials and server endpoint
+### 3. Web Server Configuration
+1. Deploy the `Web-UI` folder to your web server
+2. Configure Apache/Nginx to serve the application
+3. Ensure proper permissions are set:
+```bash
+chmod 755 Web-UI/
+chmod 644 Web-UI/config.php
+```
+
+### 4. ESP32 Setup
+1. Open Arduino IDE
+2. Install required libraries:
+   - DHT sensor library
+   - Adafruit BMP280
+   - WiFi
+   - HTTPClient
+3. Configure `esp32/config.h`:
+```cpp
+#define WIFI_SSID "your_wifi_ssid"
+#define WIFI_PASSWORD "your_wifi_password"
+#define SERVER_URL "http://your_server/api/store_data.php"
+```
+4. Upload firmware to ESP32
 
 ## Usage
 
-1. Main Dashboard
-   - View real-time sensor readings
-   - Monitor system status
-   - Check sensor graphs
+### Dashboard Features
+- **Real-time Monitoring**
+  - Current temperature and humidity
+  - Atmospheric pressure
+  - Air quality index
+  - Rain status
+  - System status indicators
 
-2. Historical Data
-   - Access historical data through the "History" page
-   - Filter data by:
-     - Day (24h)
-     - Week (7D)
-     - Month (4W)
-     - Year (12M)
-     - All time
-   - Export data as CSV
+- **Historical Data**
+  - Time-based filtering options
+    - Last 24 hours
+    - Last 7 days
+    - Last 4 weeks
+    - Last 12 months
+    - Custom date range
+  - Data export in CSV format
+  - Interactive graphs
 
-## Technologies Used
+### API Endpoints
+- `api/store_data.php`: Receives sensor data
+- `api/fetch_data.php`: Retrieves historical data
 
-- Frontend:
-  - HTML/CSS/JavaScript
-  - Bootstrap 4.6
-  - Chart.js
-  - jQuery
-- Backend:
-  - PHP
-  - MySQL
-- Hardware:
-  - ESP32 microcontroller
-  - Raindrops Rain Sensor Moisture Water Module YL-83 FC-37
-  - DHT11 Temperature and Relative Humidity Sensor Module for Arduino
-  - MQ-135 Air Quality Benzene Alcohol Smoke Hazardous Gas Module
-  - BMP280 6-pin 3.3V Digital Barometric Pressure Sensor SPI I2C
-  - Various environmental sensors
+## Troubleshooting
+
+Common issues and solutions:
+1. Database connection errors
+   - Verify credentials in config.php
+   - Check MySQL service status
+2. Sensor reading errors
+   - Verify wiring connections
+   - Check power supply voltage
+3. Data not updating
+   - Confirm WiFi connectivity
+   - Verify server endpoint accessibility
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to the branch
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Bootstrap team for the frontend framework
+- Chart.js for visualization
+- ESP32 community for hardware support
 
